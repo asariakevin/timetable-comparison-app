@@ -14,6 +14,14 @@ for one_hour_period in range(NUMBER_OF_HOURS):
     hour_taken_array.append(0)
 
 
+
+
+hours_string_prompt = ""
+
+for hour in range(7,19):
+    hours_string_prompt = hours_string_prompt + str(hour) + "\t"
+
+
 # split the scheduled periods to one hour periods
 def split_into_one_hour_components( day_schedule ):
     
@@ -45,20 +53,10 @@ def split_into_one_hour_components( day_schedule ):
         print(time_pair)
 
     return schedule_time_pairs
-        # if the difference between the second hour and first is greater
-        # than one , split 
-        # split by adding one to the first hour and come up with a new pair
-        # the second element of the new pair , is again used to make a new pair
-        # this is done until the 'second hour is reached'
-
-        # this will be a new array
-
-        # check if the elements correspond to a certain when clause 
-        # if so update the class taken array as required
 
 
 
-def map_one_hour_slots_to_time_share_array( scheduled_one_hour_time):
+def map_one_hour_slots_to_hour_taken_array( scheduled_one_hour_time):
     
     mappings = {
             "7 to 8" : 0,
@@ -82,5 +80,24 @@ def map_one_hour_slots_to_time_share_array( scheduled_one_hour_time):
     print(hour_taken_array)
 
 
-one_hour_period_list = split_into_one_hour_components(timetable1.monday)
-map_one_hour_slots_to_time_share_array( one_hour_period_list)
+def print_a_timetable_to_the_terminal():
+
+    print( hours_string_prompt)
+    shade = ""
+    for hour_taken in hour_taken_array:
+
+        if hour_taken == 1:
+            shade+=("|" * 8)
+
+        else:
+            shade+="\t"
+    print( shade)
+    print( shade)
+    print( shade)
+    print( shade)
+
+list_of_one_hour_slots_2 = split_into_one_hour_components(timetable2.monday)
+list_of_one_hour_slots_1 = split_into_one_hour_components(timetable1.monday)
+map_one_hour_slots_to_hour_taken_array( list_of_one_hour_slots_1)
+map_one_hour_slots_to_hour_taken_array( list_of_one_hour_slots_2)
+print_a_timetable_to_the_terminal()
